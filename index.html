@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termux Master - Tu Linux en el Bolsillo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="logo-bracket">[</span>Termux<span class="logo-bracket">]</span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="#que-es">¿Qué es Termux?</a></li>
+                <li><a href="#casos-uso">Casos de Uso</a></li>
+                <li><a href="#instalacion">Instalación</a></li>
+                <li><a href="#configuracion">Configuración</a></li>
+                <li><a href="#comandos">Comandos</a></li>
+                <li><a href="#distros">Distros Linux</a></li>
+                <li><a href="#gui">Entorno Gráfico</a></li>
+                <li class="nav-more">
+                    <button class="nav-more-btn">Más <span class="nav-more-arrow">▾</span></button>
+                    <ul class="nav-dropdown">
+                        <li><a href="#personalizacion">Personalización</a></li>
+                        <li><a href="#requisitos">Requisitos</a></li>
+                        <li><a href="#workstation">Workstation</a></li>
+                        <li><a href="#datos-curiosos">Datos Curiosos</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#recursos">Recursos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="nav-overlay"></div>
+    <button class="to-top" aria-label="Volver arriba">↑</button>
+    <button class="refresh-btn" aria-label="Recargar sin cache">⟳</button>
+
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <pre class="ascii-art">
+   _ __      __              
+  / |_ ____/ /   ___  _______
+ |_/ // __/ _ \ / -_)/ __/ -_)
+  /__/ \__/_//_/ \__/_/  \__/ 
+                              
+  ╔═══════════════════════════════╗
+  ║  Tu Linux en el bolsillo      ║
+  ╚═══════════════════════════════╝
+            </pre>
+            <p class="hero-subtitle">
+                <span class="typed-text"></span><span class="cursor">|</span>
+            </p>
+            <div class="hero-buttons">
+                <a href="#instalacion" class="btn btn-primary">Comenzar</a>
+                <a href="#comandos" class="btn btn-secondary">Ver Comandos</a>
+            </div>
+            <div class="scroll-indicator">
+                <span>↓</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="que-es" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> ¿Qué es Termux?
+            </h2>
+            <div class="section-intro">
+                <p>Termux es un emulador de terminal para Android y un entorno Linux que funciona <strong>sin necesidad de root</strong>. Trae consigo un sistema de paquetes básico que permite acceder a herramientas de desarrollo, editores de texto, compiladores y miles de aplicaciones listas para usar.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Sin Root</h3>
+                    <p>Funciona sin necesidad de rootear tu dispositivo, mantendo la seguridad de Android.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Gestor de Paquetes</h3>
+                    <p>APT y pkg para instalar aplicaciones Linux de forma sencilla y actualizada.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Entorno Completo</h3>
+                    <p>Acceso a GCC, Python, Ruby, Node.js, Git, vim, emacs y mucho más.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <h3>Seguridad</h3>
+                    <p>Entorno aislado que no requiere permisos especiales ni root.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <h3>SSH/SCP</h3>
+                    <p>Conectate a servidores remotos directamente desde tu Android.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🐍</div>
+                    <h3>Python Included</h3>
+                    <p>Python preinstalado con pip listo para usar desde el primer momento.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="casos-uso" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Casos de Uso
+            </h2>
+            <div class="use-cases-grid">
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">💻</span>
+                        <h3>Desarrollo de Software</h3>
+                    </div>
+                    <ul>
+                        <li>Programación en Python, C/C++, Go, Rust</li>
+                        <li>Compilación y build de proyectos</li>
+                        <li>Gestión de repositorios Git</li>
+                        <li>Desarrollo web frontend/backend</li>
+                    </ul>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">🛡️</span>
+                        <h3>Hacking Ético</h3>
+                    </div>
+                    <ul>
+                        <li>Reconocimiento y enumeración</li>
+                        <li>Análisis de seguridad</li>
+                        <li>Herramientas de pentesting</li>
+                        <li>Kali Linux tools disponible</li>
+                    </ul>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">🤖</span>
+                        <h3>Automatización</h3>
+                    </div>
+                    <ul>
+                        <li>Scripts bash/python</li>
+                        <li>Tareas cron programada</li>
+                        <li>Web scraping</li>
+                        <li>APIs automation</li>
+                    </ul>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">🌐</span>
+                        <h3>Administración Remota</h3>
+                    </div>
+                    <ul>
+                        <li>SSH a servidores</li>
+                        <li>SCP/SFTP archivos</li>
+                        <li>Gestión de VPS</li>
+                        <li>Docker containers</li>
+                    </ul>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">📱</span>
+                        <h3>Servidores Personales</h3>
+                    </div>
+                    <ul>
+                        <li>Servidor web Nginx/Apache</li>
+                        <li>Base de datos MySQL/PostgreSQL</li>
+                        <li>VPN propia</li>
+                        <li>Media server</li>
+                    </ul>
+                </div>
+                <div class="use-case-card">
+                    <div class="use-case-header">
+                        <span class="use-case-icon">📚</span>
+                        <h3>Aprendizaje</h3>
+                    </div>
+                    <ul>
+                        <li>Aprende Linux desde Android</li>
+                        <li>Experimenta con distros</li>
+                        <li>Practice comandos</li>
+                        <li>Laboratorio portable</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="instalacion" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Instalación
+            </h2>
+            <div class="install-methods">
+                <div class="method-card">
+                    <h3>
+                        <span class="method-badge">Recomendado</span>
+                        F-Droid
+                    </h3>
+                    <p>Tienda de apps FOSS. Versión actualizada y verificada.</p>
+                    <div class="code-block-container">
+                        <pre><code class="language-text">1. Descarga F-Droid desde f-droid.org
+2. Busca "Termux" en la app
+3. Instala la aplicación
+4. ¡Listo! Ya puedes usar Termux</code></pre>
+                    </div>
+                    <a href="https://f-droid.org/packages/com.termux/" target="_blank" class="btn btn-small">Ir a F-Droid →</a>
+                </div>
+                <div class="method-card">
+                    <h3>GitHub</h3>
+                    <p>Descarga directa del repositorio oficial.</p>
+                    <div class="code-block-container">
+                        <pre><code class="language-text">1. Ve a github.com/termux/termux-app
+2. Descarga el APK de la última release
+3. Habilita "Instalar de fuentes desconocidas"
+4. Instala el APK</code></pre>
+                    </div>
+                    <a href="https://github.com/termux/termux-app/releases" target="_blank" class="btn btn-small">Ir a GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="configuracion" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Configuración Inicial
+            </h2>
+            <div class="config-steps">
+                <div class="step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Actualizar Paquetes</h3>
+                        <p>Lo primero que debes hacer al abrir Termux es actualizar los paquetes base.</p>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash">apt update && apt upgrade</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Instalar Paquetes Esenciales</h3>
+                        <p>Herramientas básicas que usarás frecuentemente.</p>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash">apt install git curl wget vim python</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Configurar Almacenamiento</h3>
+                        <p>Permite a Termux acceder al almacenamiento del dispositivo.</p>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash">termux-setup-storage</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Información del Sistema</h3>
+                        <p>Verifica tu instalación y configuración.</p>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash">uname -a
+df -h
+free -m</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="comandos" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Comandos Esenciales
+            </h2>
+            <p class="section-desc">Los comandos más utilizados en Termux organizados por categoría.</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="basicos">Básicos</button>
+                <button class="tab-btn" data-tab="paquetes">Paquetes</button>
+                <button class="tab-btn" data-tab="archivos">Archivos</button>
+                <button class="tab-btn" data-tab="red">Red</button>
+                <button class="tab-btn" data-tab="sistema">Sistema</button>
+            </div>
+
+            <div class="tab-content active" id="basicos">
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">ls</code>
+                        </div>
+                        <p class="command-desc">Lista archivos y directorios</p>
+                        <div class="command-options">
+                            <span>-l</span> formato largo
+                            <span>-a</span> ocultos
+                            <span>-la</span> todo
+                        </div>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">cd</code>
+                        </div>
+                        <p class="command-desc">Cambiar directorio</p>
+                        <div class="command-options">
+                            <span>cd ~</span> home
+                            <span>cd ..</span> padre
+                            <span>cd -</span> anterior
+                        </div>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">pwd</code>
+                        </div>
+                        <p class="command-desc">Mostrar directorio actual</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">mkdir</code>
+                        </div>
+                        <p class="command-desc">Crear directorio</p>
+                        <div class="command-options">
+                            <span>-p</span> padres
+                        </div>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">rm</code>
+                        </div>
+                        <p class="command-desc">Eliminar archivos</p>
+                        <div class="command-options">
+                            <span>-r</span> recursivo
+                            <span>-f</span> forzar
+                        </div>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">cp</code>
+                        </div>
+                        <p class="command-desc">Copiar archivos</p>
+                        <div class="command-options">
+                            <span>-r</span> directorio
+                        </div>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">mv</code>
+                        </div>
+                        <p class="command-desc">Mover/renombrar</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">cat</code>
+                        </div>
+                        <p class="command-desc">Ver contenido de archivo</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="paquetes">
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">apt update</code>
+                        </div>
+                        <p class="command-desc">Actualizar lista de paquetes</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">apt upgrade</code>
+                        </div>
+                        <p class="command-desc">Actualizar paquetes instalados</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">apt install [pkg]</code>
+                        </div>
+                        <p class="command-desc">Instalar paquete</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">apt remove [pkg]</code>
+                        </div>
+                        <p class="command-desc">Desinstalar paquete</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">pkg install [pkg]</code>
+                        </div>
+                        <p class="command-desc">Instalar con pkg (wrapper)</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">pkg search [term]</code>
+                        </div>
+                        <p class="command-desc">Buscar paquete</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">dpkg -l</code>
+                        </div>
+                        <p class="command-desc">Listar paquetes instalados</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">apt autoremove</code>
+                        </div>
+                        <p class="command-desc">Limpiar dependencias</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="archivos">
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">touch [file]</code>
+                        </div>
+                        <p class="command-desc">Crear archivo vacío</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">nano [file]</code>
+                        </div>
+                        <p class="command-desc">Editor de texto simple</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">vim [file]</code>
+                        </div>
+                        <p class="command-desc">Editor vim</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">head [file]</code>
+                        </div>
+                        <p class="command-desc">Ver primeras líneas</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">tail [file]</code>
+                        </div>
+                        <p class="command-desc">Ver últimas líneas</p>
+                        <div class="command-options">
+                            <span>-f</span> tiempo real
+                        </div>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">grep [patrón]</code>
+                        </div>
+                        <p class="command-desc">Buscar en archivos</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">find</code>
+                        </div>
+                        <p class="command-desc">Buscar archivos</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">chmod +x [file]</code>
+                        </div>
+                        <p class="command-desc">Hacer ejecutable</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="red">
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">ssh user@host</code>
+                        </div>
+                        <p class="command-desc">Conexión SSH</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">scp file user@host:</code>
+                        </div>
+                        <p class="command-desc">Copiar por SSH</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">curl [url]</code>
+                        </div>
+                        <p class="command-desc">Descargar/web request</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">wget [url]</code>
+                        </div>
+                        <p class="command-desc">Descargar archivos</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">ping [host]</code>
+                        </div>
+                        <p class="command-desc">Verificar conectividad</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">ip addr</code>
+                        </div>
+                        <p class="command-desc">Ver IP local</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">netstat -tuln</code>
+                        </div>
+                        <p class="command-desc">Ver puertos abiertos</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">rsync</code>
+                        </div>
+                        <p class="command-desc">Sincronización remota</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="sistema">
+                <div class="commands-grid">
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">top</code>
+                        </div>
+                        <p class="command-desc">Ver procesos</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">ps aux</code>
+                        </div>
+                        <p class="command-desc">Listar procesos</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">kill [pid]</code>
+                        </div>
+                        <p class="command-desc">Terminar proceso</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">df -h</code>
+                        </div>
+                        <p class="command-desc">Espacio en disco</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">free -m</code>
+                        </div>
+                        <p class="command-desc">Memoria RAM</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">uptime</code>
+                        </div>
+                        <p class="command-desc">Tiempo activo</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">uname -a</code>
+                        </div>
+                        <p class="command-desc">Info del sistema</p>
+                    </div>
+                    <div class="command-card">
+                        <div class="command-header">
+                            <code class="command-name">whoami</code>
+                        </div>
+                        <p class="command-desc">Usuario actual</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="personalizacion" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Personalización
+            </h2>
+            <div class="customization-grid">
+                <div class="custom-card">
+                    <h3>Archivo .bashrc</h3>
+                    <p>Personaliza tu terminal con aliases y configuración.</p>
+                    <div class="code-block-container">
+                        <pre><code class="language-bash"># ~/.bashrc
+alias ll='ls -la'
+alias la='ls -a'
+alias ..='cd ..'
+alias update='apt update && apt upgrade'
+
+PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+export EDITOR=nano</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                    </div>
+                </div>
+                <div class="custom-card">
+                    <h3>Prompt con Colores</h3>
+                    <p>Un prompt más visual y útil.</p>
+                    <div class="code-block-container">
+                        <pre><code class="language-bash">PS1='\[\033[01;32m\]\w\[\033[00m\]\[\033[01;36m\]\$\[\033[00m\] '
+# Verde para directorio
+# Cyan para $</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                    </div>
+                </div>
+                <div class="custom-card">
+                    <h3>Oh My Zsh</h3>
+                    <p>Instala zsh con plugins y temas.</p>
+                    <div class="code-block-container">
+                        <pre><code class="language-bash">apt install zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                    </div>
+                </div>
+                <div class="custom-card">
+                    <h3>Powerlevel10k</h3>
+                    <p>Tema moderno para zsh.</p>
+                    <div class="code-block-container">
+                        <pre><code class="language-bash">git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+# Edita ~/.zshrc: ZSH_THEME="powerlevel10k/powerlevel10k"</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                    </div>
+                </div>
+                <div class="custom-card">
+                    <h3>Neofetch</h3>
+                    <p>Muestra info del sistema con estilo.</p>
+                    <div class="code-block-container">
+                        <pre><code class="language-bash">apt install neofetch
+neofetch</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                    </div>
+                </div>
+                <div class="custom-card">
+                    <h3>Plugins Útiles</h3>
+                    <p>Mejora tu experiencia con plugins.</p>
+                    <div class="code-block-container">
+                        <pre><code class="language-bash"># En ~/.zshrc
+plugins=(git docker python node npm)
+source $ZSH/oh-my-zsh.sh</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="distros" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Distros Linux en Termux
+            </h2>
+            <p class="section-desc">Instala distribuciones Linux completas dentro de Termux usando proot-distro.</p>
+            
+            <div class="distro-intro">
+                <h3>¿Por qué instalar una distro?</h3>
+                <ul>
+                    <li>✅ Acceso a más paquetes y herramientas</li>
+                    <li>✅ Entorno más similar a un PC Linux</li>
+                    <li>✅ Distintas versiones de distribuciones</li>
+                    <li>✅ Aislamiento del sistema base</li>
+                </ul>
+            </div>
+
+            <div class="distros-table-container">
+                <table class="distros-table">
+                    <thead>
+                        <tr>
+                            <th>Distro</th>
+                            <th>Tamaño</th>
+                            <th>Mejor Para</th>
+                            <th>Complejidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ubuntu</strong></td>
+                            <td>~100MB</td>
+                            <td>Desarrollo general, Docker</td>
+                            <td><span class="difficulty easy">Baja</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Debian</strong></td>
+                            <td>~90MB</td>
+                            <td>Estabilidad, servidores</td>
+                            <td><span class="difficulty easy">Baja</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Arch Linux</strong></td>
+                            <td>~80MB</td>
+                            <td>Rolling release, personalizado</td>
+                            <td><span class="difficulty hard">Alta</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fedora</strong></td>
+                            <td>~110MB</td>
+                            <td>Innovación, containers</td>
+                            <td><span class="difficulty medium">Media</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kali Linux</strong></td>
+                            <td>~120MB</td>
+                            <td>Seguridad, pentesting</td>
+                            <td><span class="difficulty medium">Media</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Alpine</strong></td>
+                            <td>~50MB</td>
+                            <td>Ligero, containers</td>
+                            <td><span class="difficulty medium">Media</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="install-distro-section">
+                <h3>Instalación de Ubuntu (ejemplo)</h3>
+                <div class="install-steps">
+                    <div class="install-step">
+                        <div class="step-badge">1</div>
+                        <div class="step-text">
+                            <h4>Instalar proot-distro</h4>
+                            <div class="code-block-container">
+                                <pre><code class="language-bash">apt install proot-distro</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="install-step">
+                        <div class="step-badge">2</div>
+                        <div class="step-text">
+                            <h4>Listar distros disponibles</h4>
+                            <div class="code-block-container">
+                                <pre><code class="language-bash">proot-distro list</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="install-step">
+                        <div class="step-badge">3</div>
+                        <div class="step-text">
+                            <h4>Instalar Ubuntu</h4>
+                            <div class="code-block-container">
+                                <pre><code class="language-bash">proot-distro install ubuntu</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="install-step">
+                        <div class="step-badge">4</div>
+                        <div class="step-text">
+                            <h4>Iniciar sesión en Ubuntu</h4>
+                            <div class="code-block-container">
+                                <pre><code class="language-bash">proot-distro login ubuntu</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="install-step">
+                        <div class="step-badge">5</div>
+                        <div class="step-text">
+                            <h4>Actualizar e instalar herramientas</h4>
+                            <div class="code-block-container">
+                                <pre><code class="language-bash">apt update && apt upgrade
+apt install git curl wget vim python3 build-essential</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="install-distro-section">
+                <h3>Instalación de Kali Linux</h3>
+                <div class="code-block-container">
+                    <pre><code class="language-bash"># Instalación de Kali Linux
+proot-distro install kali
+
+# Iniciar Kali Linux
+proot-distro login kali
+
+# Dentro de Kali - actualizar
+apt update && apt full-upgrade
+
+# Instalar herramientas Kali
+apt install kali-linux-default</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                </div>
+            </div>
+
+            <div class="install-distro-section">
+                <h3>Instalación de Arch Linux</h3>
+                <div class="code-block-container">
+                    <pre><code class="language-bash"># Instalación de Arch Linux
+proot-distro install arch
+
+# Iniciar Arch Linux
+proot-distro login arch
+
+# Dentro de Arch - actualizar
+pacman -Syu
+
+# Instalar base
+pacman -S base-devel git curl wget</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gui" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Entorno Gráfico (GUI)
+            </h2>
+            <p class="section-desc">Añade un escritorio gráfico a tu distro Linux en Termux mediante VNC.</p>
+
+            <div class="gui-intro">
+                <div class="gui-info-card">
+                    <h3>🎯 Requisitos Mínimos</h3>
+                    <ul>
+                        <li>Dispositivo con Android 7.0+</li>
+                        <li>2GB de RAM disponible</li>
+                        <li>4GB de almacenamiento libre</li>
+                        <li>Una distro Linux instalada</li>
+                    </ul>
+                </div>
+                <div class="gui-info-card">
+                    <h3>📱 Apps Necesarias</h3>
+                    <ul>
+                        <li>Termux (ya instalado)</li>
+                        <li>Termux:Widget (opcional)</li>
+                        <li>VNC Viewer (RealVNC o similar)</li>
+                        <li>Una distro con proot-distro</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="desktops-grid">
+                <div class="desktop-card">
+                    <div class="desktop-icon">🖥️</div>
+                    <h3>Xfce</h3>
+                    <p class="desktop-desc">Ligero y rápido. Ideal para dispositivos con recursos limitados.</p>
+                    <div class="desktop-requirements">
+                        <span>RAM: 512MB</span>
+                        <span>Espacio: 1GB</span>
+                    </div>
+                </div>
+                <div class="desktop-card">
+                    <div class="desktop-icon">🎨</div>
+                    <h3>LXQt</h3>
+                    <p class="desktop-desc">Moderno y ligero. Alternativa a Xfce con look más actual.</p>
+                    <div class="desktop-requirements">
+                        <span>RAM: 512MB</span>
+                        <span>Espacio: 1GB</span>
+                    </div>
+                </div>
+                <div class="desktop-card">
+                    <div class="desktop-icon">🔵</div>
+                    <h3>MATE</h3>
+                    <p class="desktop-desc">Clásico y estable. Fork de GNOME 2.</p>
+                    <div class="desktop-requirements">
+                        <span>RAM: 1GB</span>
+                        <span>Espacio: 2GB</span>
+                    </div>
+                </div>
+                <div class="desktop-card">
+                    <div class="desktop-icon">⚡</div>
+                    <h3>KDE Plasma</h3>
+                    <p class="desktop-desc">Completo y moderno. Necesita más recursos.</p>
+                    <div class="desktop-requirements">
+                        <span>RAM: 2GB+</span>
+                        <span>Espacio: 3GB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gui-install-section">
+                <h3>Guía de Instalación: Xfce + VNC</h3>
+                
+                <div class="install-step">
+                    <div class="step-badge">1</div>
+                    <div class="step-text">
+                        <h4>Instalar servidor VNC en la distro</h4>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash"># Entra a tu distro
+proot-distro login ubuntu
+
+# Instala XFCE y VNC
+apt update && apt install xfce4 xfce4-goodies tightvncserver</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="install-step">
+                    <div class="step-badge">2</div>
+                    <div class="step-text">
+                        <h4>Configurar VNC</h4>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash"># Configurar VNC server
+vncserver
+
+# Contraseña: ingresa una contraseña (6-8 caracteres)
+# Verás preguntas, responde 'n' a las opciones de viewonly</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="install-step">
+                    <div class="step-badge">3</div>
+                    <div class="step-text">
+                        <h4>Configurar inicio de sesión</h4>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash"># Crear archivo de configuración
+mkdir -p ~/.vnc
+
+# Editar configuración
+vim ~/.vnc/xstartup</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="install-step">
+                    <div class="step-badge">4</div>
+                    <div class="step-text">
+                        <h4>Contenido de xstartup</h4>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash">#!/bin/bash
+xrdb $HOME/.Xresources
+startxfce4 &</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="install-step">
+                    <div class="step-badge">5</div>
+                    <div class="step-text">
+                        <h4>Hacer ejecutable y reiniciar VNC</h4>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash">chmod +x ~/.vnc/xstartup
+vncserver -kill :1
+vncserver :1 -geometry 1280x720 -depth 24</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="install-step">
+                    <div class="step-badge">6</div>
+                    <div class="step-text">
+                        <h4>Instalar termux-x11 (opcional, para mejor experiencia)</h4>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash"># En Termux (host), NO en la distro
+apt install termux-x11
+
+# En la distro, instalar cliente X11
+apt install xorg-xauth</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="install-step">
+                    <div class="step-badge">7</div>
+                    <div class="step-text">
+                        <h4>Conectar desde VNC Viewer</h4>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash"># Configuración en VNC Viewer:
+# Address: localhost:5901
+# Nombre: Ubuntu XFCE
+
+# O si es externo (misma red):
+# Address: 192.168.x.x:5901</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gui-alternative">
+                <h3>Método Alternativo: termux-x11 (Sin VNC)</h3>
+                <div class="code-block-container">
+                    <pre><code class="language-bash"># 1. Instalar en Termux host
+apt install termux-x11
+
+# 2. En la distro, ejecuta:
+export DISPLAY=:0
+termux-x11 :0 &
+
+# 3. Inicia las apps que quieras
+xfce4-session &</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="requisitos" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Requisitos del Sistema
+            </h2>
+            <p class="section-desc">Recursos necesarios según el entorno que quieras usar.</p>
+
+            <div class="requirements-table-container">
+                <table class="requirements-table">
+                    <thead>
+                        <tr>
+                            <th>Componente</th>
+                            <th>Mínimo</th>
+                            <th>Recomendado</th>
+                            <th>Ideal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Android</strong></td>
+                            <td>7.0 (Nougat)</td>
+                            <td>11.0+</td>
+                            <td>13.0+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>RAM</strong></td>
+                            <td>2GB</td>
+                            <td>4GB</td>
+                            <td>6GB+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Almacenamiento</strong></td>
+                            <td>500MB</td>
+                            <td>2GB</td>
+                            <td>10GB+</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Procesador</strong></td>
+                            <td>Quad-core 1.4GHz</td>
+                            <td>Octa-core 2.0GHz</td>
+                            <td>Flagship (Snapdragon 8 series)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="requirements-by-env">
+                <h3>Por Entorno</h3>
+                <div class="env-requirements-grid">
+                    <div class="env-req-card">
+                        <h4>📟 Termux Puro</h4>
+                        <ul>
+                            <li>Android 7.0+</li>
+                            <li>2GB RAM</li>
+                            <li>500MB almacenamiento</li>
+                            <li>Cualquier dispositivo</li>
+                        </ul>
+                    </div>
+                    <div class="env-req-card">
+                        <h4>🖥️ Distro CLI</h4>
+                        <ul>
+                            <li>Android 7.0+</li>
+                            <li>3GB RAM</li>
+                            <li>1GB almacenamiento</li>
+                            <li>4+ núcleos recomendados</li>
+                        </ul>
+                    </div>
+                    <div class="env-req-card">
+                        <h4>🖼️ Entorno Gráfico</h4>
+                        <ul>
+                            <li>Android 9.0+</li>
+                            <li>4GB RAM</li>
+                            <li>4GB almacenamiento</li>
+                            <li>GPU integrada/decodicada</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="workstation" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Workstation Móvil Linux
+            </h2>
+            <p class="section-desc">Los tres entornos de trabajo que puedes tener en tu Android.</p>
+
+            <div class="env-comparison">
+                <div class="env-card env-pure">
+                    <div class="env-header">
+                        <span class="env-level">Nivel 1</span>
+                        <h3>Termux Puro</h3>
+                    </div>
+                    <div class="env-icon">📟</div>
+                    <p class="env-desc">Entorno base de Termux sin distros adicionales.</p>
+                    <div class="env-features">
+                        <h4>Características</h4>
+                        <ul>
+                            <li>✅ Acceso directo a sistema Android</li>
+                            <li>✅ Paquetes optimizados para Termux</li>
+                            <li>✅ Ligero y rápido</li>
+                            <li>✅ Funcionalidad completa</li>
+                        </ul>
+                    </div>
+                    <div class="env-use">
+                        <h4>Casos de Uso</h4>
+                        <ul>
+                            <li>Scripts de automatización</li>
+                            <li>Desarrollo Python/Node básico</li>
+                            <li>SSH a servidores</li>
+                            <li>Aprendizaje de comandos Linux</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="env-card env-cli">
+                    <div class="env-header">
+                        <span class="env-level">Nivel 2</span>
+                        <h3>Distro CLI</h3>
+                    </div>
+                    <div class="env-icon">🖥️</div>
+                    <p class="env-desc">Distribución Linux completa en modo terminal.</p>
+                    <div class="env-features">
+                        <h4>Características</h4>
+                        <ul>
+                            <li>✅ Sistema Linux tradicional</li>
+                            <li>✅ Acceso a paquetes disto-específicos</li>
+                            <li>✅ Aislamiento del sistema host</li>
+                            <li>✅ Múltiples distros disponibles</li>
+                        </ul>
+                    </div>
+                    <div class="env-use">
+                        <h4>Casos de Uso</h4>
+                        <ul>
+                            <li>Servidores locales</li>
+                            <li>Compilación cruzada</li>
+                            <li>Contenedores Docker</li>
+                            <li>Kali Linux tools</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="env-card env-gui">
+                    <div class="env-header">
+                        <span class="env-level">Nivel 3</span>
+                        <h3>Entorno Gráfico</h3>
+                    </div>
+                    <div class="env-icon">🖼️</div>
+                    <p class="env-desc">Escritorio Linux completo con interfaz gráfica.</p>
+                    <div class="env-features">
+                        <h4>Características</h4>
+                        <ul>
+                            <li>✅ Escritorio tradicional</li>
+                            <li>✅ Aplicaciones GUI</li>
+                            <li>✅ Navegador web completo</li>
+                            <li>✅ Ofimática básica</li>
+                        </ul>
+                    </div>
+                    <div class="env-use">
+                        <h4>Casos de Uso</h4>
+                        <ul>
+                            <li>Trabajo de oficina móvil</li>
+                            <li>Desarrollo IDE completo</li>
+                            <li>Edición de imágenes</li>
+                            <li>Acceso remoto a PC</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="workstation-recommendation">
+                <h3>🎯 Recomendación Final</h3>
+                <div class="recommendation-content">
+                    <p>Para una workstation móvil efectiva, te recomendamos:</p>
+                    <ol>
+                        <li><strong>Inicia con Termux puro</strong> - Aprende los comandos básicos y familiarízate con el entorno.</li>
+                        <li><strong>Instala una distro CLI</strong> - Ubuntu o Debian para tener acceso completo a herramientas.</li>
+                        <li><strong>Añade GUI solo si es necesario</strong> - Xfce para equipos con recursos limitados, o KDE para equipos potentes.</li>
+                    </ol>
+                    <div class="best-setup">
+                        <h4>⚡ Configuración Recomendada</h4>
+                        <div class="code-block-container">
+                            <pre><code class="language-bash"># Setup inicial
+apt install proot-distro
+proot-distro install ubuntu
+
+# Herramientas esenciales
+proot-distro login ubuntu
+apt install git curl wget vim python3 python3-pip \
+           build-essential docker.io neofetch htop
+
+# Acceso desde cualquier lugar
+apt install openssh-server openssh-client</code><button class="copy-btn" aria-label="Copiar código">📋</button></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="datos-curiosos" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Datos Curiosos
+            </h2>
+            
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-number">01</div>
+                    <h3>Sin Play Store</h3>
+                    <p>Termux nunca ha estado en Google Play Store debido a políticas de la tienda. Se distribuye exclusivamente en F-Droid y GitHub.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">02</div>
+                    <h3>Basado en Ubuntu</h3>
+                    <p>Los paquetes de Termux están construidos sobre la base de Ubuntu 22.04 (Jammy Jellyfish), lo que garantiza compatibilidad.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">03</div>
+                    <h3>No requiere Root</h3>
+                    <p>A diferencia de otras soluciones, Termux funciona completamente sin permisos de root, usando namespaces de Linux.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">04</div>
+                    <h3>10,000+ Paquetes</h3>
+                    <p>El repositorio de Termux ofrece más de 10,000 paquetes precompilados listos para instalar.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">05</div>
+                    <h3>Comunidad Activa</h3>
+                    <p>La comunidad de Termux es muy activa en GitHub y Telegram, con más de 50,000 estrellas en el repositorio.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">06</div>
+                    <h3>Multi-Terminal</h3>
+                    <p>Puedes ejecutar múltiples sesiones de terminal simultáneas, ideal para administración de sistemas.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">07</div>
+                    <h3>SSH Inverso</h3>
+                    <p>Puedes configurar SSH inverso para acceder a tu Android desde cualquier lugar del mundo.</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">08</div>
+                    <h3>API Android</h3>
+                    <p>Termux tiene una API que permite acceder a sensores, cámara, SMS y otras funciones de Android desde la terminal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Preguntas Frecuentes
+            </h2>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Termux requiere root?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No, Termux funciona completamente sin permisos de root. Utiliza Linux namespaces para crear un entorno aislado dentro de Android. Esto mantiene la seguridad del dispositivo intacta.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Puedo usar Termux para hacking ético?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, Termux puede usarse para hacking ético y pruebas de seguridad. Instala Kali Linux con proot-distro para acceder a herramientas como Nmap, Metasploit, etc. Siempre usa estas herramientas de manera legal y con autorización.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Termux puede ejecutar un servidor web?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí, puedes ejecutar servidores Nginx, Apache, o incluso servicios como MySQL, PostgreSQL, Redis, etc. Es perfecto para desarrollar y probar proyectos web desde tu móvil.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Cómo accedo a archivos del teléfono?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ejecuta <code>termux-setup-storage</code> para dar permisos. Esto creará una carpeta <code>~/storage</code> con enlaces a Downloads, DCIM, etc.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Puedo instalar Docker en Termux?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>En Termux puro no es posible instalar Docker completo debido a limitaciones del kernel. Sin embargo, en distros como Ubuntu o Debian puedes usar Docker. Alternativamente, usa containers con proot o namespaces.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Qué diferencia hay entre apt y pkg?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p><code>pkg</code> es un wrapper de Termux que simplifica la instalación. Internamente usa <code>apt</code>, pero <code>pkg</code> maneja automáticamente la configuración de repositorios.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Termux funciona en iOS?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No, Termux es exclusivo de Android. Para iOS existen alternativas como iSH (basado en Alpine Linux) disponible en la App Store.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>¿Cómo puedo hacer backup de mi entorno?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Usa <code>termux-backup</code> para crear un backup y <code>termux-restore</code> para restaurarlo. El backup incluye todos los paquetes instalados y configuraciones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recursos" class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-accent">#</span> Recursos Adicionales
+            </h2>
+
+            <div class="resources-grid">
+                <div class="resource-category">
+                    <h3>📚 Documentación Oficial</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://termux.dev" target="_blank">termux.dev - Web oficial</a></li>
+                        <li><a href="https://wiki.termux.com" target="_blank">Wiki de Termux</a></li>
+                        <li><a href="https://github.com/termux/termux-app" target="_blank">Repositorio GitHub</a></li>
+                        <li><a href="https://github.com/termux/termux-packages" target="_blank">Paquetes</a></li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>💬 Comunidades</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://t.me/termux" target="_blank">Grupo de Telegram</a></li>
+                        <li><a href="https://termux.nl/" target="_blank">Foro comunitario</a></li>
+                        <li><a href="https://www.reddit.com/r/termux/" target="_blank">Subreddit</a></li>
+                        <li><a href="https://discord.gg/termux" target="_blank">Discord</a></li>
+                    </ul>
+                </div>
+                <div class="resource-category">
+                    <h3>🛠️ Herramientas Relacionadas</h3>
+                    <ul class="resource-list">
+                        <li><a href="https://f-droid.org/packages/com.termux/" target="_blank">F-Droid</a></li>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.realvnc.viewer.android" target="_blank">VNC Viewer</a></li>
+                        <li><a href="https://termuxapi.com" target="_blank">Termux API</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-bracket">[</span>Termux<span class="logo-bracket">]</span>
+                    <span class="footer-subtitle">Master</span>
+                </div>
+                <p class="footer-desc">Tu Linux en el bolsillo - Guía completa</p>
+                <div class="footer-links">
+                    <a href="#hero">Inicio</a>
+                    <a href="#instalacion">Instalar</a>
+                    <a href="#comandos">Comandos</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+                <p class="footer-copy">
+                    © 2026 Termux Master. No afiliado a Termux o F-Droid.<br>
+                    Educación y referencia únicamente.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
