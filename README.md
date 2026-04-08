@@ -8,6 +8,10 @@
 
 > **Nota importante:** Este proyecto fue desarrollado utilizando **Termux** en un dispositivo Android. Todo el código, desde la estructura HTML hasta los estilos CSS y la lógica JavaScript, fue escrito y editado directamente desde la terminal de Termux.
 
+## Visita el Sitio
+
+https://deartdev.github.io/termux_page/
+
 ---
 
 ## 📱 ¿Qué es Termux Master?
